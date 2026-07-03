@@ -1,7 +1,13 @@
-# codeprov — Code Provenance Guard
+<p align="center">
+  <img src="media/icon.png" alt="codeprov logo" width="128" height="128" />
+</p>
 
-> Flags AI-generated or pasted code you **never actually read** — before you commit it.
-> **100% local. No API keys. No cloud. No data ever leaves your machine.**
+<h1 align="center">codeprov — Code Provenance Guard</h1>
+
+<p align="center">
+  Flags AI-generated or pasted code you <strong>never actually read</strong> — before you commit it.<br/>
+  <strong>100% local. No API keys. No cloud. No data ever leaves your machine.</strong>
+</p>
 
 Linters tell you *the code is bad*. CI tells you *a test failed*. Nothing tells you
 **"you didn't even read these 23 lines."** codeprov does.
@@ -14,7 +20,9 @@ and whether you ever looked at it again before committing.
 
 - **Origin tracking** — every block is tagged `typed` / `pasted` / `ai` from editor events.
 - **Attention tracking** — a block clears once you read, edit, or run it.
-- **Inline warning** — unread external blocks get a squiggle.
+- **Inline warning** — unread external blocks get a gutter marker:
+  <img src="media/unread-ai.svg" alt="unread AI" width="14" height="14" /> unread AI &nbsp;·&nbsp;
+  <img src="media/unread-paste.svg" alt="unread paste" width="14" height="14" /> unread paste.
 - **Status bar** — live count of unread external code; turns red for sensitive files.
 - **Commit guard** — `codeprov: Check unread AI/pasted code` lists everything you
   haven't reviewed, and warns hard when it's in a sensitive file (`auth/`, `*.sql`, `*.env`, …).
