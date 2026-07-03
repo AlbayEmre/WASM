@@ -1,7 +1,13 @@
-# codeprov — Code Provenance Guard
+<p align="center">
+  <img src="extension/media/icon.png" alt="codeprov logo" width="128" height="128" />
+</p>
 
-> Flags AI-generated or pasted code you **never actually read** — before you commit it.
-> **100% local. No API keys. No cloud.**
+<h1 align="center">codeprov — Code Provenance Guard</h1>
+
+<p align="center">
+  Flags AI-generated or pasted code you <strong>never actually read</strong> — before you commit it.<br/>
+  <strong>100% local. No API keys. No cloud.</strong>
+</p>
 
 Linters tell you *the code is bad*. CI tells you *a test failed*. Nothing tells you
 **"you didn't even read these 23 lines."** codeprov does — by tracking *how* code
