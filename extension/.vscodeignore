@@ -1,0 +1,12 @@
+# Exclude sources / dev files; ship only compiled JS + the WASM artifact.
+.vscode/**
+.vscode-test/**
+src/**
+**/*.map
+**/tsconfig.json
+**/*.ts
+!wasm/*.wasm
+node_modules/**
+.gitignore
+**/.gitignore
+*.vsix

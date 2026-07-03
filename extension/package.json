@@ -1,0 +1,134 @@
+{
+  "name": "codeprov",
+  "displayName": "codeprov — Code Provenance Guard",
+  "description": "Flags AI-generated or pasted code you never actually read — before you commit it. 100% local, no API keys, no cloud.",
+  "version": "0.1.3",
+  "publisher": "yunus-emre-albayrak",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "copilot",
+    "cursor",
+    "provenance",
+    "code review",
+    "security"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeprov.checkUnread",
+        "title": "codeprov: Check unread AI/pasted code"
+      },
+      {
+        "command": "codeprov.markBlockReviewed",
+        "title": "codeprov: Mark block at cursor as reviewed"
+      },
+      {
+        "command": "codeprov.markFileReviewed",
+        "title": "codeprov: Mark current file as reviewed"
+      },
+      {
+        "command": "codeprov.showReport",
+        "title": "codeprov: Show provenance report"
+      },
+      {
+        "command": "codeprov.sendSlackSummary",
+        "title": "codeprov: Send session summary to Slack"
+      },
+      {
+        "command": "codeprov.exportRules",
+        "title": "codeprov: Export rules"
+      },
+      {
+        "command": "codeprov.importRules",
+        "title": "codeprov: Import rules"
+      }
+    ],
+    "configuration": {
+      "title": "codeprov",
+      "properties": {
+        "codeprov.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable provenance tracking."
+        },
+        "codeprov.minScore": {
+          "type": "number",
+          "default": 0.5,
+          "description": "Minimum risk score (0.0–1.0) before a block is surfaced."
+        },
+        "codeprov.pasteThresholdLines": {
+          "type": "number",
+          "default": 3,
+          "description": "An insertion spanning at least this many lines in one change is treated as external (pasted/AI)."
+        },
+        "codeprov.pasteThresholdChars": {
+          "type": "number",
+          "default": 80,
+          "description": "An insertion of at least this many characters in one change is treated as external (pasted/AI)."
+        },
+        "codeprov.blockCommitOnUnreadSensitive": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn (modal) when unread external code exists in a sensitive file during a commit check."
+        },
+        "codeprov.sensitivePaths": {
+          "type": "array",
+          "default": [
+            "**/auth/**",
+            "**/*secret*",
+            "**/*.sql",
+            "**/*.env"
+          ],
+          "description": "Glob patterns for security-sensitive files (higher risk weighting)."
+        },
+        "codeprov.ignorePaths": {
+          "type": "array",
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/out/**"
+          ],
+          "description": "Glob patterns to ignore entirely."
+        },
+        "codeprov.alert.slackWebhook": {
+          "type": "string",
+          "default": "",
+          "description": "Optional Slack incoming-webhook URL. Only aggregate metrics are sent — never code."
+        }
+      }
+    }
+  },
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunus-emre-albayrak/codeprov"
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "vsce:package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.24.0",
+    "typescript": "^5.4.0"
+  }
+}

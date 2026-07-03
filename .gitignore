@@ -1,0 +1,11 @@
+# Rust
+engine/target/
+
+# Node
+extension/node_modules/
+extension/out/
+*.vsix
+
+# OS
+.DS_Store
+Thumbs.db

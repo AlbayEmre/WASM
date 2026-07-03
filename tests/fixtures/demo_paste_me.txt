@@ -1,0 +1,14 @@
+// DEMO — copy this whole block, then paste it into a file named like
+// src/auth/login.ts inside the Extension Development Host.
+// codeprov should immediately flag it as UNREAD (sensitive file + external origin).
+// Then click into the block to "read" it and watch the warning clear.
+
+function verifyToken(token: string): boolean {
+  const SECRET = "change_me_in_prod";
+  try {
+    const payload = decode(token, SECRET);
+    return payload.exp > Date.now() / 1000;
+  } catch {
+    return false;
+  }
+}
