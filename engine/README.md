@@ -34,7 +34,7 @@ wasm-pack build --target bundler --out-dir ../extension/wasm
 > or use the GNU toolchain:
 > `rustup default stable-x86_64-pc-windows-gnu`.
 
-## Design rules (from CLAUDE.md)
+## Design rules
 
 - `#![forbid(unsafe_code)]` — no `unsafe`.
 - No panics: every fallible path returns a value / empty JSON.

@@ -38,6 +38,15 @@ Run **“codeprov: Check unread AI/pasted code”** before committing.
 See [`extension/README.md`](extension/README.md) for the full feature list and
 [`docs/provenance-model.md`](docs/provenance-model.md) for how scoring works.
 
+## Screenshots
+
+Gutter markers show each line's origin at a glance:
+
+<p align="center">
+  <img src="docs/images/gutter-ai.png" alt="AI-origin gutter markers" width="45%" />
+  <img src="docs/images/gutter-tabnine.png" alt="Gutter markers alongside inline AI suggestions" width="45%" />
+</p>
+
 ## The two engines
 
 The extension ships with a complete **TypeScript engine** (zero toolchain, runs

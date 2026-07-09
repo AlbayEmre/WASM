@@ -10,7 +10,7 @@ function overlaps(aStart: number, aEnd: number, bStart: number, bEnd: number): b
  * The line ranges are kept in sync with the live document: every edit shifts
  * the blocks below it (insert/delete) so a stored block always points at the
  * same logical code even as the file grows above it. This is the TS port of
- * the Rust `block_map.rs` described in CLAUDE.md.
+ * the Rust `block_map.rs`.
  */
 export class FileBlocks {
   blocks: CodeBlock[] = [];
