@@ -19,23 +19,24 @@ them without any private API or AI service.
 Thresholds (configurable): `pasteThresholdLines` (default 3),
 `pasteThresholdChars` (default 80).
 
-## Axis 2 — Attention (what happened after it entered)
+## Axis 2 — Attention (what clears a block)
 
 | Signal | How it is set | Meaning |
 |---|---|---|
-| `read` | Cursor/selection visits the block (after the insertion settles) | The user looked at it. |
-| `edited` | A later manual keystroke lands inside the block | The user actively changed it. |
-| `ran` | A debug/run session starts for the file | The code was exercised. |
-| `untouched` | none of the above | **Unread.** |
+| `read` | Explicit **"Mark as reviewed"** quick fix (Ctrl+. → Enter) | The user confirmed they reviewed it. |
+| `edited` | A later manual keystroke lands inside the block | Tracked for future reporting; does not clear the block on its own. |
+| `untouched` | `read` was never set | **Unread — surfaced as a risk.** |
 
-A 500 ms guard ignores the cursor move caused by the insertion itself, so a
-fresh paste/AI block does not count as "read" instantly.
+Scrolling past a block or moving the cursor over it does **not** clear it —
+only the explicit review action does. This is a deliberate choice (see
+[`extension/CHANGELOG.md`](../extension/CHANGELOG.md), 0.1.1): passive attention
+is too easy to trigger by accident and was found to under-report real risk.
 
 ## Risk score (0.0 – 1.0)
 
 ```
 risk = 0  if origin == typed
-risk = 0  if read or edited or ran          (reviewed)
+risk = 0  if read                           (explicitly reviewed)
 otherwise:
   base   = 0.5 + min(lines / 40, 1) * 0.3   (0.5 .. 0.8 by size)
   if sensitive: risk = min(1.0, base + 0.25)

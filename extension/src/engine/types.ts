@@ -18,7 +18,6 @@ export interface CodeBlock {
   /** Set only by an explicit "Mark as reviewed" action — the only way to clear. */
   read: boolean;
   edited: boolean;
-  ran: boolean;
   charCount: number;
 }
 

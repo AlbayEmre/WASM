@@ -115,18 +115,6 @@ export class Engine implements IEngine {
     return this.signalsFor(uri, fsPath);
   }
 
-  /** A file was executed (debug/run/test) — its blocks count as exercised. */
-  markRan(uri: string): RiskSignal[] {
-    const fb = this.files.get(uri);
-    if (!fb) {
-      return [];
-    }
-    for (const b of fb.blocks) {
-      b.ran = true;
-    }
-    return this.signalsFor(uri, fb.fsPath);
-  }
-
   signalsFor(uri: string, fsPath: string): RiskSignal[] {
     const fb = this.files.get(uri);
     if (!fb) {

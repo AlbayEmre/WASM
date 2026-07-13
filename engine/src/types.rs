@@ -27,7 +27,6 @@ pub struct CodeBlock {
     /// Set only by an explicit "Mark as reviewed" action — the only way to clear.
     pub read: bool,
     pub edited: bool,
-    pub ran: bool,
     pub char_count: u32,
 }
 

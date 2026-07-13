@@ -2,7 +2,7 @@
   "name": "codeprov",
   "displayName": "codeprov — Code Provenance Guard",
   "description": "Flags AI-generated or pasted code you never actually read — before you commit it. 100% local, no API keys, no cloud.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "publisher": "yunus-emre-albayrak",
   "license": "MIT",
   "engines": {
@@ -117,7 +117,8 @@
   "icon": "media/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunus-emre-albayrak/codeprov"
+    "url": "https://github.com/AlbayEmre/WASM.git",
+    "directory": "extension"
   },
   "scripts": {
     "compile": "tsc -p ./",

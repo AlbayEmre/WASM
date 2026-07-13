@@ -18,11 +18,12 @@ and whether you ever looked at it again before committing.
 
 ## What it does
 
-- **Origin tracking** — every block is tagged `typed` / `pasted` / `ai` from editor events.
-- **Attention tracking** — a block clears once you read, edit, or run it.
-- **Inline warning** — unread external blocks get a gutter marker:
-  <img src="media/unread-ai.svg" alt="unread AI" width="14" height="14" /> unread AI &nbsp;·&nbsp;
-  <img src="media/unread-paste.svg" alt="unread paste" width="14" height="14" /> unread paste.
+- **Origin tracking** — every block is tagged `typed` / `pasted` / `ai` from editor events,
+  using a clipboard-comparison heuristic (see below) — no AI service involved.
+- **Attention tracking** — a block stays flagged as unread until you explicitly mark it
+  reviewed; simply scrolling past or editing nearby code does not clear it.
+- **Inline warning** — unread external blocks get a colored gutter marker: purple for
+  AI-generated code, orange for pasted code.
 - **Status bar** — live count of unread external code; turns red for sensitive files.
 - **Commit guard** — `codeprov: Check unread AI/pasted code` lists everything you
   haven't reviewed, and warns hard when it's in a sensitive file (`auth/`, `*.sql`, `*.env`, …).
@@ -40,7 +41,7 @@ In the dev host:
 1. Open any file.
 2. **Paste** (or type fast) a block of 3+ lines → it lights up as *unread*, status bar shows the count.
 3. Run **`codeprov: Check unread AI/pasted code`** from the Command Palette → modal lists it.
-4. Click into the block / scroll through it → it clears (you "read" it).
+4. Put the cursor on the squiggle → Ctrl+. → **"Mark this block as reviewed"** → it clears.
 
 Try it against `tests/fixtures/` for a scripted demo.
 
@@ -62,9 +63,9 @@ Try it against `tests/fixtures/` for a scripted demo.
 - `engine/` — Rust → WASM engine (performance path, ported from the TS logic).
 
 > **Note on AI vs paste:** the public VS Code API delivers a clipboard paste and an
-> accepted inline suggestion identically (one multi-line insert, no provenance flag),
-> so the MVP labels both as external `pasted`. A future command hook for inline-suggest
-> acceptance promotes a block to `ai`.
+> accepted inline suggestion identically (one multi-line insert, no provenance flag).
+> codeprov compares the inserted text against the live clipboard: a match is labeled
+> `pasted`, a non-match is labeled `ai` (an accepted Copilot/Cursor/inline suggestion).
 
 ## Privacy
 

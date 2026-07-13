@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.4
+
+- Fixed Marketplace packaging: README no longer embeds SVG images (disallowed
+  by the Marketplace README renderer).
+- Corrected `repository` field to point at the actual GitHub remote, with a
+  `directory` hint since the extension lives in a subfolder.
+- README and `docs/provenance-model.md` now describe the actual 0.1.1 behavior
+  (a block clears only via explicit "Mark as reviewed"; `edited` is tracked
+  but does not clear a block on its own).
+- Removed the unused `ran` field and the dead `markRan()` method, left over
+  from before the 0.1.1 attention-model change.
+- Fixed a Rust/WASM engine bug where zero-length changes (deletions) were
+  counted toward typing-cadence sampling, unlike the TypeScript engine.
+
 ## 0.1.3
 
 - **Off-screen detection**: a disk watcher now flags external code written to

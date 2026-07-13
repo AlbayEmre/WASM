@@ -34,7 +34,6 @@ export class FileBlocks {
       createdAt: Date.now(),
       read: false,
       edited: false,
-      ran: false,
       charCount,
     });
   }

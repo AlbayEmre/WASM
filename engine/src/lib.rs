@@ -106,7 +106,7 @@ impl Engine {
             );
 
             if origin == Origin::Typed {
-                if c.inserted_chars <= 2 {
+                if c.inserted_chars > 0 && c.inserted_chars <= 2 {
                     self.baseline.record_typing_interval(since_last);
                 }
                 self.baseline.record_lines(Origin::Typed, 1);

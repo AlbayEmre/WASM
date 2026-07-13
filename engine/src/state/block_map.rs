@@ -45,7 +45,6 @@ impl FileBlocks {
             created_at_ms: now_ms,
             read: false,
             edited: false,
-            ran: false,
             char_count,
         });
     }
